@@ -1,0 +1,292 @@
+@media (min-width: 344px) {
+  .mdl {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.6);
+    font-family: "Montserrat", sans-serif;
+  }
+}
+h4 {
+  text-align: center;
+}
+.mldrnk_header {
+  width: 95%;
+  height: 60%;
+  border-radius: 2%;
+  border: 1.9% #000;
+  box-shadow: 0px 3px 10.7px 3px #7772b04d;
+  background: #ffffff;
+}
+
+.mdl__content {
+  background: #fff;
+  border-radius: 1.9%;
+  padding: 5%;
+  width: 90%;
+  max-width: 90%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.close_btn {
+  position: absolute;
+  top: 7px;
+  right: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transform: scale(2);
+}
+
+.mdldrnk__img {
+  width: 100%;
+  height: 100%;
+  transform: scaleX(-1);
+  flex-shrink: 0;
+  object-fit: cover;
+  margin-left: 4%;
+}
+
+.mdldrnk__name {
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 1.2;
+  text-align: left;
+  margin: 0 0 15px 0;
+  margin-left: 9%;
+}
+
+.mdldrnk__description {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.mdldrnk__text-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  margin-right: 2%;
+}
+
+.mdldrnk__desc-text {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  margin-left: 10%;
+  text-align: left;
+  max-width: 100%;
+}
+
+.mdldrnk__bottom {
+  width: 100%;
+  background: #f8f8f8;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.modal__submit {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.size-selector {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.size-btn {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f5f5f5;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0px 3px 10.7px 3px #7772b04d;
+  margin: 2%;
+}
+
+.size-btn.active {
+  background: #000000;
+  color: white;
+  border-color: #ccc;
+  box-shadow: 0px 3px 10.7px 3px #7772b04d;
+}
+
+.drink-quantity {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.colvo {
+  margin-left: 2%;
+}
+
+.quantity-controls,
+.addon-quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0px 1px 4px 0px #00000075;
+  padding: 3px 6px;
+  min-width: 60px;
+}
+
+.quantity-controls button,
+.addon-quantity-controls button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: 400;
+  cursor: pointer;
+  color: #333;
+  line-height: 1;
+  padding: 0 5px;
+  transition: transform 0.2s ease;
+}
+
+.quantity-controls button:hover,
+.addon-quantity-controls button:hover {
+  transform: scale(1.1);
+}
+
+.quantity-controls span,
+.addon-quantity-controls span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+}
+
+.addons-section {
+  margin: 10px 0;
+  width: 80%;
+  margin-right: 6%;
+}
+
+.addon-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 3px 10.7px 3px #7772b04d;
+  width: 100%;
+}
+
+.addon-item.selected {
+  border-color: #ccc;
+  background-color: #f9f9f9;
+}
+
+.addon-info {
+  display: flex;
+  gap: 10px;
+}
+
+.select-addon-btn,
+.addon-quantity-controls {
+  width: 80px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.addon-quantity-controls {
+  justify-content: space-between;
+  padding: 0 8px;
+  box-shadow: 0px 1px 4px 0px #00000040;
+}
+
+.addon-quantity-controls button {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0;
+}
+
+.addon-quantity-controls span {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.select-addon-btn {
+  background: #ffffff;
+  border: none;
+  cursor: pointer;
+  box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.total-price {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 20px 0;
+  text-align: right;
+}
+
+.modal__submit {
+  width: 100%;
+  padding: 12px;
+  background: #000000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background 0.3s;
+  box-shadow: 0px 3px 10.7px 3px #7772b04d;
+}
+
+.modal__submit:hover {
+  background: #808080;
+}
+
+.div_img {
+  width: 50%;
+  height: 50%;
+}

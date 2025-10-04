@@ -1,0 +1,30 @@
+.menu-list-wrapper {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.menu-list {
+  display: flex;
+  flex-wrap: wrap; /* Перенос на новую строку */
+  gap: 20px; /* Отступ между карточками */
+  justify-content: center; /* Центрирование карточек */
+}
+
+/* Стили для адаптивности */
+@media (max-width: 768px) {
+  .menu-list {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-list {
+    gap: 10px;
+  }
+}
+.no-items-message {
+  color: #fff;
+  text-align: center;
+  margin-top: 55%;
+}

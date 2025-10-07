@@ -13,7 +13,7 @@ const ModalBasket = ({ isOpen, onClose }) => {
 
   return (
     <>
-      <div className="modal-overlay" onClick={onClose} />
+      <div className="modal-overlayb" onClick={onClose} />
       <div className="modal">
         <h2>Ваша корзина</h2>
         <button onClick={onClose}>×</button>
@@ -44,7 +44,7 @@ const ModalBasket = ({ isOpen, onClose }) => {
               ))}
             </ul>
             <div className="total-price">Итого: {totalPrice} руб</div>
-            <div className="bybtn" onClick={() => }></div>
+            
           </>
         )}
       </div>

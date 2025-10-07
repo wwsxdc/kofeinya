@@ -44,7 +44,14 @@ const ModalBasket = ({ isOpen, onClose }) => {
               ))}
             </ul>
             <div className="total-price">Итого: {totalPrice} руб</div>
-            
+            <button
+              className="bybtn"
+              onClick={() =>
+                (document.location.href = "https://chat.deepseek.com/")
+              }
+            >
+              Оплатить
+            </button>
           </>
         )}
       </div>

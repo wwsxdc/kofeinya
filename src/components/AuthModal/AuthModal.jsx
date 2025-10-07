@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import "./AuthModal.css"; 
+import "./AuthModal.css";
 
-const AuthModal = () => {
-  const [isOpen, setIsOpen] = useState(true);
+const AuthModal = ({ isOpen, onClose, onSuccess }) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -19,31 +18,39 @@ const AuthModal = () => {
         },
         credentials: "include",
         body: JSON.stringify({
-          email: login, 
-          password: password, 
+          email: login,
+          password: password,
         }),
       });
 
       if (response.ok) {
         console.log("Login successful");
-        setIsOpen(false);
-        // Можно добавить редирект или обновление состояния приложения
+        onSuccess(); // Вызываем колбэк успеха
+        onClose(); // Закрываем модалку
       } else {
         console.error("Login failed");
         // Можно добавить обработку ошибок (показать сообщение пользователю)
+        alert("Ошибка авторизации. Проверьте логин и пароль.");
       }
     } catch (error) {
       console.error("Request failed:", error);
-      // Можно добавить обработку ошибок сети
+      alert("Ошибка сети. Попробуйте позже.");
     } finally {
       setIsLoading(false);
     }
   };
 
+  // Если модалка закрыта, не рендерим её
   if (!isOpen) return null;
 
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay" onClick={handleOverlayClick}>
       <div className="auth_modal">
         <h2>Авторизация</h2>
         <form onSubmit={handleSubmit}>

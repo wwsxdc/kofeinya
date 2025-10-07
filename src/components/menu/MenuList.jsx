@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import MenuItem from "../items/MenuItem";
+import AuthModal from "../AuthModal/AuthModal"; // Импортируем компонент модалки
 import "./MenuList.css";
 
 const MenuList = ({ activeCategory = "popular" }) => {
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -16,21 +18,24 @@ const MenuList = ({ activeCategory = "popular" }) => {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-
-              // Если сервер ожидает токен в куках, а не в заголовке Authorization:
-              // "Cookie": `jwt=${jwtToken}`
             },
-            credentials: "include", // Для отправки кук, если требуется
+            credentials: "include",
           }
         );
 
         if (!response.ok) {
+          if (response.status === 401) {
+            setIsAuthModalOpen(true); // Открываем модалку вместо выброса ошибки
+            setLoading(false);
+            return; // Прерываем выполнение
+          }
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const data = await response.json();
         setMenuItems(data.goods);
       } catch (err) {
+        // Эта часть выполнится только для других ошибок (не 401)
         setError(err.message);
         console.error("Ошибка при загрузке данных:", err);
       } finally {
@@ -40,6 +45,37 @@ const MenuList = ({ activeCategory = "popular" }) => {
 
     fetchMenuItems();
   }, []);
+
+  // Функция для повторной загрузки данных после успешной авторизации
+  const refetchData = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(
+        "http://localhost:8080/api/v1/inventory/goods",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setMenuItems(data.goods);
+    } catch (err) {
+      setError(err.message);
+      console.error("Ошибка при загрузке данных:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Фильтрация по активной категории из Header
   const filteredItems = menuItems.filter((item) => {
@@ -78,6 +114,18 @@ const MenuList = ({ activeCategory = "popular" }) => {
         <div className="no-items-message">
           В этой категории пока нет товаров
         </div>
+      )}
+
+      {/* Модальное окно авторизации */}
+      {isAuthModalOpen && (
+        <AuthModal
+          isOpen={isAuthModalOpen}
+          onClose={() => setIsAuthModalOpen(false)}
+          onSuccess={() => {
+            setIsAuthModalOpen(false);
+            refetchData(); // Повторно загружаем данные после успешной авторизации
+          }}
+        />
       )}
     </div>
   );

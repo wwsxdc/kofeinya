@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./MenuItem.css";
-import DrinkModal from "../FckModal/DrinkModal";
+import DrinkModal from "../DrinkModal/DrinkModal";
 
 const MenuItem = ({
   id,
